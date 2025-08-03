@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
 
 const StyledContainer = ({
   width = '320px',
@@ -16,11 +17,14 @@ const StyledContainer = ({
       style={{ width, height, margin }}
       onClick={onClick}
     >
-      {imageSrc && (
-        <div className="absolute -top-7 flex justify-center w-full">
-          <img src={imageSrc} alt="Santa Image" className="w-[50px] h-[50px]" />
-        </div>
-      )}
+     <Image
+  src={imageSrc}
+  alt="Santa Image"
+  width={50}
+  height={50}
+  style={{ objectFit: 'contain' }}
+  priority // LCP 대상이거나 상단 요소일 경우
+/>
       <p className="font-[SUITE] text-[16px] text-[#254434] my-1 z-10 whitespace-pre-line">{text1}</p>
       {Array.isArray(text2) ? (
         text2.map((line, index) => (
